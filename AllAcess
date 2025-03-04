@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Film Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Film Collection</h1>
+        <div class="video-grid" id="video-grid">
+            <!-- Video embeds will be added here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Array of Google Photos video links
+        const videoLinks = [
+            "https://photos.app.goo.gl/SCj1kAXvWh55Ufdf7",
+            "https://photos.app.goo.gl/sRk6LAiq5yELuHsT8",
+            "https://photos.app.goo.gl/D2KLMB5Q8PMb7X2A9",
+            // Add more video links here
+        ];
+
+        // Function to generate video embeds
+        function generateVideoEmbeds() {
+            const videoGrid = document.getElementById("video-grid");
+
+            videoLinks.forEach(link => {
+                const videoContainer = document.createElement("div");
+                videoContainer.className = "video-container";
+
+                const iframe = document.createElement("iframe");
+                iframe.src = link;
+                iframe.allow = "autoplay; fullscreen";
+
+                videoContainer.appendChild(iframe);
+                videoGrid.appendChild(videoContainer);
+            });
+        }
+
+        // Call the function to generate video embeds
+        generateVideoEmbeds();
+    </script>
+</body>
+</html>
